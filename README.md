@@ -1,4 +1,4 @@
-# Freelance App
+# Freelance API App
 
 This is an application to manage freelancers directory.
 
