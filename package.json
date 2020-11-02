@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app/src/bin/www",
-    "startlocal": "@powershell -Command $env:DEBUG='*'; nodemon app/src/bin/www"
+    "startlocal": "@powershell -Command $env:DEBUG='*'; nodemon app/src/bin/www",
+    "test-one": "tap ./app/test/freelancer.test.js --timeout=6000 --reporter=spec",
+    "test-set": "tap ./app/test/*.test.js --timeout=6000 --reporter=spec",
+    "test-debug": "node --inspect-brk=9229 ./app/test/freelancer.test.js --timeout=60000 --reporter=spec"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,7 @@
     "mongodb": "^3.5.9",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
+    "sinon": "^9.2.1",
     "supertest": "^5.0.0",
     "tap": "^14.10.8",
     "winston": "^3.3.3"
