@@ -41,11 +41,11 @@ app.use(morgan('tiny'));
 /* 
   RESTful API - User 
 */
-app.post('/api/v1.0/user', api.user.createUser);
-app.get('/api/v1.0/user', api.user.getUser);
-app.get('/api/v1.0/user/:userId', api.user.getUser);
-app.put('/api/v1.0/user/:userId', api.user.updateUser);
-app.delete('/api/v1.0/user/:userId', api.user.deleteUser);
+app.post('/api/v1.0/freelancer', api.freelancer.createFreelancer);
+app.get('/api/v1.0/freelancer', api.freelancer.getFreelancer);
+app.get('/api/v1.0/freelancer/:freelancerId', api.freelancer.getFreelancer);
+app.put('/api/v1.0/freelancer/:freelancerId', api.freelancer.updateFreelancer);
+app.delete('/api/v1.0/freelancer/:freelancerId', api.freelancer.deleteFreelancer);
 
 /* 
   RESTful API - Skill 
