@@ -12,19 +12,19 @@ The REST API to the app is described below.
 
 ## Freelancer
 
-`POST /api/v1.0/freelancer` &mdash; Create freelancer
-`GET /api/v1.0/freelancer` &mdash; Get list of Freelances
-`GET /api/v1.0/freelancer/:freelancerId` &mdash; Get freelancer by id
-`PUT /api/v1.0/freelancer/:freelancerId` &mdash; Update freelancer
-`DELETE /api/v1.0/freelancer/:freelancerId` &mdash; Delete freelancer
+- `POST /api/v1.0/freelancer` &mdash; Create freelancer
+- `GET /api/v1.0/freelancer` &mdash; Get list of Freelances
+- `GET /api/v1.0/freelancer/:freelancerId` &mdash; Get freelancer by id
+- `PUT /api/v1.0/freelancer/:freelancerId` &mdash; Update freelancer
+- `DELETE /api/v1.0/freelancer/:freelancerId` &mdash; Delete freelancer
 
 ## Skill
 
-`GET /api/v1.0/skill` &mdash; Get list of Skills
+- `GET /api/v1.0/skill` &mdash; Get list of Skills
 
 ## Hobby
 
-`GET /api/v1.0/hobby` &mdash; Get list of Hobbies
+- `GET /api/v1.0/hobby` &mdash; Get list of Hobbies
 
 # Sample Payload
 
