@@ -12,6 +12,7 @@ const path = require('path');
 const morgan = require('morgan');
 const errorHandling = require('./lib/errorHandler/index');
 const { loadSchema } = require('./lib/payloadValidator/index');
+const cors = require('cors');
 
 /*
   Routes
@@ -37,6 +38,7 @@ app.use(helmet());
 app.use(compression());
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
+app.use(cors());
 
 /* 
   RESTful API - User 
