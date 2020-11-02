@@ -1,6 +1,12 @@
 # Freelance API App
 
 This is an application to manage freelancers directory.
+- Express-based app
+- Uses MVC folder structure
+- OpenAPI as API documentation
+- Payload validation is based on swagger openAPI
+- MongoDB as data storage
+- Hosted at Heroku
 
 ## Run the app
 
