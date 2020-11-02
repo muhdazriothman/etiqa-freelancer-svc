@@ -1,0 +1,289 @@
+openapi: 3.0.2
+
+info:
+  title: Freelancer API
+  description: >
+    Specification for endpoints that covers creating, viewing, updating and deleting freelancer
+  version: 1.0.0
+  
+servers: 
+  - url: https://freelancer-svc/api/v1.0
+    description: Live demo of the API
+  - url: http://localhost:5000/api/v1.0
+    description: Local testing of the API
+      
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+  parameters:
+    Id:
+      name: Id
+      description: Unique id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/Id'
+    
+  schemas:   
+    Id:
+      title: Schema for Id
+      type: string
+      minLength: 24
+      maxLength: 24
+
+    createFreelancer:
+      title: Schema for freelancer creation
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          minLength: 3
+        email:
+          type: string
+          description: Email
+          format: email
+          minLength: 3
+        phoneNo: 
+          type: string
+          description: Phone Number
+        skills:
+          type: array
+          description: List of skills
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            description: Skill description
+        hobbies:
+          type: array
+          description: List of hobbies
+          uniqueItems: true
+          items:
+            type: string
+            description: Hobby description
+      additionalProperties: false    
+      required: 
+        - name
+        - email
+        - phoneNo
+        - skills
+        - hobbies
+        
+    updateFreelancer:
+      title: Schema for freelancer update
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          minLength: 3
+        phoneNo: 
+          type: string
+          description: Phone Number
+        skills:
+          type: array
+          description: List of skills
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            description: Skill description
+        hobbies:
+          type: array
+          description: List of hobbies
+          uniqueItems: true
+          items:
+            type: string
+            description: Hobby description
+        version:
+          type: integer
+          description: Record version
+      additionalProperties: false    
+      required: 
+        - name
+        - phoneNo
+        - skills
+        - hobbies
+
+    getFreelancerById:
+      title: Schema for freelancer retrieval by id
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Freelancer id
+        name:
+          type: string
+          description: Name
+        email:
+          type: string
+          description: Email
+          format: email
+        phoneNo: 
+          type: string
+          description: Phone Number
+        skills:
+          type: array
+          description: List of skills
+          items:
+            type: string
+            description: Skill description
+        hobbies:
+          type: array
+          description: List of hobbies
+          items:
+            type: string
+            description: Hobby description
+            
+    getAllFreelancer:
+      title: Schema for all freelancer retrieval
+      type: array
+      items:
+        allOf:
+          - $ref: '#/components/schemas/getFreelancerById'
+
+paths:
+  '/freelancer':
+    post:
+      summary: Creates a new freelancer
+      tags:
+        - freelancer
+      security:
+        - BearerAuth:
+          - create-freelancer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createFreelancer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getFreelancerById'
+        '401':
+          description: Not authenticated
+        '403':
+          description: Not authorized
+        '500':
+          description: Internal server error
+        '504':
+          description: Gateway timeout
+          
+    get:
+      summary: Get all freelancers
+      tags:
+        - freelancer
+      security:
+        - BearerAuth:
+          - get-freelancer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllFreelancer'
+        '204':
+          description: No content
+        '401':
+          description: Not authenticated
+        '403':
+          description: Not authorized
+        '500':
+          description: Internal server error
+        '504':
+          description: Gateway timeout
+          
+            
+  '/freelancer/{Id}':
+    get:
+      summary: Get freelancer with given id 
+      tags:
+        - freelancer
+      security:
+        - BearerAuth:
+          - update-freelancer
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getFreelancerById'
+        '401':
+          description: Not authenticated
+        '403':
+          description: Not authorized
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+        '504':
+          description: Gateway timeout
+          
+          
+    put:
+      summary: Updates freelancer with given id 
+      tags:
+        - freelancer
+      security:
+        - BearerAuth:
+          - update-freelancer
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateFreelancer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getFreelancerById'
+        '401':
+          description: Not authenticated
+        '403':
+          description: Not authorized
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+        '504':
+          description: Gateway timeout
+          
+    delete:
+      summary: Delete freelancer with given id 
+      tags:
+        - freelancer
+      security:
+        - BearerAuth:
+          - delete-freelancer
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Not authenticated
+        '403':
+          description: Not authorized
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+        '504':
+          description: Gateway timeout

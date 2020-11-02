@@ -1,0 +1,13 @@
+#
+## Application Properties
+#
+
+logger:
+  level: debug
+  request-format: ":date[iso] :method :url :status :response-time msec :res[content-length] bytes"
+
+errors:
+  path: "app/src/lib/errorHandlingRoutes/error.json"
+
+schema: 
+  path: "app/src/lib/payloadValidatorschema.json"

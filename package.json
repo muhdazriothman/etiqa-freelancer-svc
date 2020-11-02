@@ -1,0 +1,35 @@
+{
+  "name": "freelancer-svc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/src/bin/www",
+    "startlocal": "@powershell -Command $env:DEBUG='*'; nodemon app/src/bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muhdazriothman/etiqa-freelancer-svc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muhdazriothman/etiqa-freelancer-svc/issues"
+  },
+  "homepage": "https://github.com/muhdazriothman/etiqa-freelancer-svc#readme",
+  "dependencies": {
+    "ajv": "^6.12.6",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "js-yaml": "^3.14.0",
+    "mongodb": "^3.5.9",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
+    "supertest": "^5.0.0",
+    "tap": "^14.10.8",
+    "winston": "^3.3.3"
+  }
+}
